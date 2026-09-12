@@ -5,60 +5,74 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ouyang Catalog México</title>
+<title>Ouyang MX | Catálogo de Fútbol</title>
 
 <style>
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --black:#101010;
+    --dark:#171717;
+    --gray:#6b6b6b;
+    --light:#f5f6f8;
+    --white:#ffffff;
+    --green:#00b86b;
+    --border:#e8e8e8;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f5f6f8;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--light);
     color:#111;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
+
 header{
-    background:#111;
-    color:white;
-    padding:18px 6%;
     position:sticky;
     top:0;
-    z-index:100;
-    box-shadow:0 4px 20px rgba(0,0,0,.15);
+    z-index:1000;
+    background:rgba(16,16,16,.96);
+    backdrop-filter:blur(15px);
+    color:white;
+    padding:16px 5%;
+    box-shadow:0 5px 25px rgba(0,0,0,.15);
 }
 
-.nav{
+.navbar{
+    max-width:1400px;
+    margin:auto;
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    gap:20px;
+    gap:25px;
 }
 
 .logo{
     font-size:24px;
-    font-weight:800;
+    font-weight:900;
+    white-space:nowrap;
 }
 
 .logo span{
-    color:#00d084;
+    color:var(--green);
 }
 
-.search{
+.search-container{
     flex:1;
-    max-width:600px;
     position:relative;
 }
 
-.search input{
+.search{
     width:100%;
-    padding:15px 45px 15px 18px;
-    border-radius:30px;
+    height:48px;
     border:none;
     outline:none;
+    border-radius:30px;
+    padding:0 50px 0 20px;
     font-size:15px;
 }
 
@@ -66,112 +80,159 @@ header{
     position:absolute;
     right:18px;
     top:14px;
+    font-size:18px;
 }
 
-/* HERO */
+/* ================= HERO ================= */
+
 .hero{
-    padding:60px 6%;
-    background:linear-gradient(135deg,#111,#242424);
+    background:
+    radial-gradient(circle at 80% 20%,rgba(0,184,107,.25),transparent 30%),
+    linear-gradient(135deg,#0c0c0c,#222);
     color:white;
+    padding:70px 5%;
+}
+
+.hero-content{
+    max-width:1400px;
+    margin:auto;
+}
+
+.hero small{
+    color:#00d47b;
+    font-weight:bold;
+    letter-spacing:1px;
 }
 
 .hero h1{
-    font-size:clamp(35px,5vw,65px);
-    max-width:800px;
-    margin-bottom:15px;
+    font-size:clamp(40px,6vw,75px);
+    max-width:850px;
+    line-height:1;
+    margin:15px 0;
 }
 
 .hero p{
-    color:#bbb;
-    font-size:17px;
     max-width:650px;
+    color:#c7c7c7;
+    font-size:17px;
+    line-height:1.6;
 }
 
-/* CATEGORIES */
+/* ================= CATEGORIES ================= */
+
+.categories-wrapper{
+    background:white;
+    border-bottom:1px solid var(--border);
+}
+
 .categories{
-    padding:30px 6% 10px;
-    overflow-x:auto;
+    max-width:1400px;
+    margin:auto;
+    padding:18px 5%;
     display:flex;
-    gap:10px;
+    gap:9px;
+    overflow-x:auto;
+}
+
+.categories::-webkit-scrollbar{
+    height:4px;
 }
 
 .category{
-    border:none;
-    padding:11px 18px;
-    border-radius:30px;
+    border:1px solid #ddd;
     background:white;
+    border-radius:30px;
+    padding:10px 17px;
     cursor:pointer;
     white-space:nowrap;
     transition:.2s;
+    font-size:13px;
 }
 
-.category:hover,
+.category:hover{
+    border-color:#111;
+}
+
 .category.active{
     background:#111;
     color:white;
+    border-color:#111;
 }
 
-/* PRODUCTS */
-.container{
-    padding:30px 6% 70px;
+/* ================= MAIN ================= */
+
+main{
+    max-width:1400px;
+    margin:auto;
+    padding:35px 5% 80px;
 }
 
 .topbar{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:25px;
     gap:20px;
+    margin-bottom:25px;
 }
 
-.count{
-    color:#666;
+.topbar h2{
+    font-size:27px;
+}
+
+.counter{
+    margin-top:5px;
+    color:#777;
+    font-size:14px;
 }
 
 .sort{
-    padding:10px 14px;
-    border-radius:10px;
     border:1px solid #ddd;
     background:white;
+    padding:11px 15px;
+    border-radius:10px;
+    outline:none;
 }
 
-/* GRID */
-.grid{
+/* ================= GRID ================= */
+
+.products{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    grid-template-columns:
+    repeat(auto-fill,minmax(230px,1fr));
     gap:20px;
 }
 
-/* CARD */
-.card{
+/* ================= PRODUCT ================= */
+
+.product{
     background:white;
     border-radius:18px;
     overflow:hidden;
-    box-shadow:0 5px 20px rgba(0,0,0,.06);
+    border:1px solid #eee;
     transition:.25s;
 }
 
-.card:hover{
+.product:hover{
     transform:translateY(-5px);
-    box-shadow:0 12px 30px rgba(0,0,0,.12);
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
 }
 
-.card-image{
-    height:260px;
-    background:#eee;
+.product-image{
+    height:290px;
     position:relative;
+    background:#eee;
     overflow:hidden;
 }
 
-.card-image img{
+.product-image img{
     width:100%;
     height:100%;
     object-fit:cover;
-    transition:.3s;
+    transition:.35s;
 }
 
-.card:hover img{
-    transform:scale(1.05);
+.product:hover .product-image img{
+    transform:scale(1.06);
 }
 
 .badge{
@@ -180,160 +241,215 @@ header{
     left:12px;
     background:#111;
     color:white;
-    padding:7px 10px;
     border-radius:20px;
-    font-size:11px;
+    padding:7px 10px;
+    font-size:10px;
+    font-weight:bold;
 }
 
 .favorite{
     position:absolute;
-    right:12px;
     top:12px;
-    width:35px;
-    height:35px;
-    border-radius:50%;
+    right:12px;
+    width:37px;
+    height:37px;
     border:none;
+    border-radius:50%;
     background:white;
     cursor:pointer;
-    font-size:17px;
+    font-size:19px;
+    box-shadow:0 3px 10px rgba(0,0,0,.12);
 }
 
-.card-content{
+.favorite.active{
+    color:#e63946;
+}
+
+.product-info{
     padding:17px;
 }
 
-.category-name{
-    font-size:12px;
+.product-category{
     color:#888;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
     margin-bottom:7px;
 }
 
-.card h3{
+.product-title{
     font-size:16px;
-    margin-bottom:12px;
     line-height:1.35;
+    min-height:43px;
 }
 
-.info{
+.product-details{
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
+    gap:7px;
+    margin:13px 0;
+    flex-wrap:wrap;
 }
 
 .tag{
-    background:#f0f0f0;
+    background:#f1f1f1;
     padding:6px 9px;
-    border-radius:8px;
-    font-size:11px;
+    border-radius:7px;
+    font-size:10px;
+    color:#555;
 }
 
-.view{
-    width:100%;
-    border:none;
+.view-product{
+    display:block;
+    text-decoration:none;
+    text-align:center;
     background:#111;
     color:white;
     padding:12px;
     border-radius:10px;
-    cursor:pointer;
+    font-size:13px;
     font-weight:bold;
     transition:.2s;
 }
 
-.view:hover{
-    background:#00a86b;
+.view-product:hover{
+    background:var(--green);
 }
 
-/* EMPTY */
+/* ================= EMPTY ================= */
+
 .empty{
     display:none;
     text-align:center;
-    padding:80px 20px;
+    padding:90px 20px;
+}
+
+.empty-icon{
+    font-size:50px;
+    margin-bottom:15px;
 }
 
 .empty h2{
-    margin-bottom:10px;
+    margin-bottom:8px;
 }
 
 .empty p{
     color:#777;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
+
 footer{
-    background:#111;
-    color:#aaa;
+    background:#101010;
+    color:#888;
+    padding:40px 5%;
     text-align:center;
-    padding:30px;
-    font-size:13px;
 }
 
-/* MOBILE */
-@media(max-width:600px){
+footer strong{
+    color:white;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:700px){
 
     header{
-        padding:15px 4%;
+        padding:13px 4%;
     }
 
-    .nav{
+    .navbar{
         flex-direction:column;
         align-items:stretch;
-    }
-
-    .search{
-        max-width:none;
-    }
-
-    .hero{
-        padding:40px 5%;
-    }
-
-    .container{
-        padding:25px 4%;
-    }
-
-    .grid{
-        grid-template-columns:repeat(2,1fr);
         gap:12px;
     }
 
-    .card-image{
-        height:210px;
+    .logo{
+        text-align:center;
     }
 
-    .card-content{
-        padding:12px;
+    .hero{
+        padding:45px 5%;
     }
 
-    .card h3{
-        font-size:14px;
+    .hero h1{
+        font-size:43px;
+    }
+
+    main{
+        padding:25px 4% 60px;
     }
 
     .topbar{
-        align-items:flex-start;
         flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .sort{
+        width:100%;
+    }
+
+    .products{
+        grid-template-columns:repeat(2,1fr);
+        gap:11px;
+    }
+
+    .product-image{
+        height:220px;
+    }
+
+    .product-info{
+        padding:12px;
+    }
+
+    .product-title{
+        font-size:13px;
+    }
+
+    .view-product{
+        font-size:11px;
+        padding:10px;
+    }
+}
+
+@media(max-width:380px){
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .product-image{
+        height:300px;
     }
 }
 </style>
 </head>
 
+
 <body>
+
+
+<!-- ================= HEADER ================= -->
 
 <header>
 
-<div class="nav">
+<div class="navbar">
 
 <div class="logo">
 OUYANG<span>MX</span>
 </div>
 
-<div class="search">
+<div class="search-container">
+
 <input
-type="text"
 id="search"
-placeholder="Buscar equipo, jersey, temporada..."
+class="search"
+type="text"
+placeholder="Busca equipo, jersey, temporada..."
+autocomplete="off"
 >
+
 <span class="search-icon">🔎</span>
+
 </div>
 
 </div>
@@ -341,94 +457,161 @@ placeholder="Buscar equipo, jersey, temporada..."
 </header>
 
 
+
+<!-- ================= HERO ================= -->
+
 <section class="hero">
 
-<h1>Catálogo de productos</h1>
+<div class="hero-content">
+
+<small>🇲🇽 CATÁLOGO DE FÚTBOL</small>
+
+<h1>
+Encuentra tu jersey.
+</h1>
 
 <p>
-Encuentra rápidamente jerseys, ropa deportiva y otros productos.
-Busca por equipo, liga, temporada o tipo de producto.
+Explora jerseys de clubes y selecciones.
+Busca por equipo, liga, temporada o tipo de camiseta.
 </p>
+
+</div>
 
 </section>
 
 
+
+<!-- ================= CATEGORIES ================= -->
+
+<div class="categories-wrapper">
+
 <div class="categories">
 
-<button class="category active" data-category="Todos">
+<button
+class="category active"
+data-category="Todos">
 Todos
 </button>
 
-<button class="category" data-category="Premier League">
-🇬🇧 Premier League
+<button
+class="category"
+data-category="Premier League">
+🏴 Premier League
 </button>
 
-<button class="category" data-category="Serie A">
-🇮🇹 Serie A
-</button>
-
-<button class="category" data-category="La Liga">
+<button
+class="category"
+data-category="La Liga">
 🇪🇸 La Liga
 </button>
 
-<button class="category" data-category="México">
-🇲🇽 México
+<button
+class="category"
+data-category="Serie A">
+🇮🇹 Serie A
 </button>
 
-<button class="category" data-category="Bundesliga">
+<button
+class="category"
+data-category="Bundesliga">
 🇩🇪 Bundesliga
 </button>
 
-<button class="category" data-category="NBA">
-🏀 NBA
+<button
+class="category"
+data-category="Ligue 1">
+🇫🇷 Ligue 1
 </button>
 
-<button class="category" data-category="NFL">
-🏈 NFL
+<button
+class="category"
+data-category="México">
+🇲🇽 México
 </button>
 
-<button class="category" data-category="Shorts">
-👖 Shorts
+<button
+class="category"
+data-category="Selecciones">
+🌎 Selecciones
 </button>
 
-<button class="category" data-category="Sneakers">
-👟 Sneakers
+<button
+class="category"
+data-category="Retro">
+🕰️ Retro
 </button>
 
-<button class="category" data-category="Entrenamiento">
-🏋️ Entrenamiento
+<button
+class="category"
+data-category="Kids">
+👦 Kids
 </button>
 
 </div>
 
+</div>
 
-<main class="container">
+
+
+<!-- ================= MAIN ================= -->
+
+<main>
 
 <div class="topbar">
 
 <div>
-<h2>Productos</h2>
-<p class="count" id="count"></p>
+
+<h2>Jerseys</h2>
+
+<p
+class="counter"
+id="counter">
+0 productos
+</p>
+
 </div>
 
-<select class="sort" id="sort">
-<option value="default">Ordenar</option>
-<option value="az">Nombre A-Z</option>
-<option value="za">Nombre Z-A</option>
+<select
+class="sort"
+id="sort">
+
+<option value="default">
+Ordenar
+</option>
+
+<option value="az">
+Nombre A-Z
+</option>
+
+<option value="za">
+Nombre Z-A
+</option>
+
 </select>
 
 </div>
 
 
-<div class="grid" id="products"></div>
+<div
+class="products"
+id="products">
+</div>
 
 
-<div class="empty" id="empty">
+<div
+class="empty"
+id="empty">
 
-<h2>No encontramos productos</h2>
+<div class="empty-icon">
+🔎
+</div>
+
+<h2>
+No encontramos ese producto
+</h2>
 
 <p>
-Prueba con otro equipo, liga o palabra.
+Prueba buscando otro equipo o temporada.
 </p>
 
 </div>
@@ -436,276 +619,548 @@ Prueba con otro equipo, liga o palabra.
 </main>
 
 
+
+<!-- ================= FOOTER ================= -->
+
 <footer>
 
-© 2026 Ouyang MX · Catálogo
+<p>
+<strong>OUYANG MX</strong>
+</p>
+
+<p>
+Catálogo de productos · Fútbol
+</p>
+
+<p style="margin-top:10px;">
+© 2026
+</p>
 
 </footer>
+
 
 
 <script>
 
 /*
-====================================================
-PRODUCTOS
-====================================================
+=========================================================
+                 BASE DE PRODUCTOS
+=========================================================
 
-Aquí agregas los productos.
+IMPORTANTE:
 
-Solo cambia:
-name
-category
-type
-image
-url
+Para agregar un jersey copia este formato:
 
+{
+    name: "Nombre del jersey",
+    category: "Premier League",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Arsenal",
+    image: "URL-DE-LA-IMAGEN",
+    url: "URL-DEL-ALBUM-YUPOO"
+}
+
+=========================================================
 */
+
 
 const products = [
 
+/* ================= PREMIER LEAGUE ================= */
+
 {
-name:"2026/27 Arsenal Home Jersey",
-category:"Premier League",
-type:"Jersey",
-image:"https://via.placeholder.com/500x600?text=Arsenal",
-url:"https://8618320710438.x.yupoo.com/"
+    name: "Arsenal Home Jersey",
+    category: "Premier League",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Arsenal",
+
+    image: "https://via.placeholder.com/600x750?text=Arsenal",
+
+    url: "https://8618320710438.x.yupoo.com/"
 },
 
 {
-name:"2026/27 Chelsea Away Jersey",
-category:"Premier League",
-type:"Jersey",
-image:"https://via.placeholder.com/500x600?text=Chelsea",
-url:"https://8618320710438.x.yupoo.com/"
+    name: "Chelsea Home Jersey",
+    category: "Premier League",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Chelsea",
+
+    image: "https://via.placeholder.com/600x750?text=Chelsea",
+
+    url: "https://8618320710438.x.yupoo.com/"
 },
 
 {
-name:"2026/27 AC Milan Away Jersey",
-category:"Serie A",
-type:"Jersey",
-image:"https://via.placeholder.com/500x600?text=AC+Milan",
-url:"https://8618320710438.x.yupoo.com/"
+    name: "Liverpool Home Jersey",
+    category: "Premier League",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Liverpool",
+
+    image: "https://via.placeholder.com/600x750?text=Liverpool",
+
+    url: "https://8618320710438.x.yupoo.com/"
 },
 
 {
-name:"2026/27 Barcelona Jersey",
-category:"La Liga",
-type:"Jersey",
-image:"https://via.placeholder.com/500x600?text=Barcelona",
-url:"https://8618320710438.x.yupoo.com/"
+    name: "Manchester City Home Jersey",
+    category: "Premier League",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Manchester City",
+
+    image: "https://via.placeholder.com/600x750?text=Manchester+City",
+
+    url: "https://8618320710438.x.yupoo.com/"
 },
 
 {
-name:"México Jersey",
-category:"México",
-type:"Jersey",
-image:"https://via.placeholder.com/500x600?text=Mexico",
-url:"https://8618320710438.x.yupoo.com/"
+    name: "Manchester United Home Jersey",
+    category: "Premier League",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Manchester United",
+
+    image: "https://via.placeholder.com/600x750?text=Manchester+United",
+
+    url: "https://8618320710438.x.yupoo.com/"
+},
+
+
+/* ================= LA LIGA ================= */
+
+{
+    name: "Barcelona Home Jersey",
+    category: "La Liga",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Barcelona",
+
+    image: "https://via.placeholder.com/600x750?text=Barcelona",
+
+    url: "https://8618320710438.x.yupoo.com/"
 },
 
 {
-name:"NBA Basketball Jersey",
-category:"NBA",
-type:"Basketball",
-image:"https://via.placeholder.com/500x600?text=NBA",
-url:"https://8618320710438.x.yupoo.com/"
+    name: "Real Madrid Home Jersey",
+    category: "La Liga",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Real Madrid",
+
+    image: "https://via.placeholder.com/600x750?text=Real+Madrid",
+
+    url: "https://8618320710438.x.yupoo.com/"
 },
 
 {
-name:"NFL Jersey",
-category:"NFL",
-type:"Football",
-image:"https://via.placeholder.com/500x600?text=NFL",
-url:"https://8618320710438.x.yupoo.com/"
+    name: "Atlético Madrid Home Jersey",
+    category: "La Liga",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Atlético Madrid",
+
+    image: "https://via.placeholder.com/600x750?text=Atletico+Madrid",
+
+    url: "https://8618320710438.x.yupoo.com/"
+},
+
+
+/* ================= SERIE A ================= */
+
+{
+    name: "AC Milan Home Jersey",
+    category: "Serie A",
+    type: "Player Version",
+    season: "2026/27",
+    team: "AC Milan",
+
+    image: "https://via.placeholder.com/600x750?text=AC+Milan",
+
+    url: "https://8618320710438.x.yupoo.com/"
 },
 
 {
-name:"Football Shorts",
-category:"Shorts",
-type:"Shorts",
-image:"https://via.placeholder.com/500x600?text=Shorts",
-url:"https://8618320710438.x.yupoo.com/"
+    name: "Inter Milan Home Jersey",
+    category: "Serie A",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Inter Milan",
+
+    image: "https://via.placeholder.com/600x750?text=Inter+Milan",
+
+    url: "https://8618320710438.x.yupoo.com/"
+},
+
+{
+    name: "Juventus Home Jersey",
+    category: "Serie A",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Juventus",
+
+    image: "https://via.placeholder.com/600x750?text=Juventus",
+
+    url: "https://8618320710438.x.yupoo.com/"
+},
+
+
+/* ================= BUNDESLIGA ================= */
+
+{
+    name: "Bayern Munich Home Jersey",
+    category: "Bundesliga",
+    type: "Player Version",
+    season: "2026/27",
+    team: "Bayern Munich",
+
+    image: "https://via.placeholder.com/600x750?text=Bayern",
+
+    url: "https://8618320710438.x.yupoo.com/"
+},
+
+
+/* ================= LIGUE 1 ================= */
+
+{
+    name: "PSG Home Jersey",
+    category: "Ligue 1",
+    type: "Player Version",
+    season: "2026/27",
+    team: "PSG",
+
+    image: "https://via.placeholder.com/600x750?text=PSG",
+
+    url: "https://8618320710438.x.yupoo.com/"
+},
+
+
+/* ================= MEXICO ================= */
+
+{
+    name: "México Home Jersey",
+    category: "México",
+    type: "Selección",
+    season: "2026",
+    team: "México",
+
+    image: "https://via.placeholder.com/600x750?text=Mexico",
+
+    url: "https://8618320710438.x.yupoo.com/"
+},
+
+
+/* ================= RETRO ================= */
+
+{
+    name: "Barcelona Retro Jersey",
+    category: "Retro",
+    type: "Retro",
+    season: "Classic",
+    team: "Barcelona",
+
+    image: "https://via.placeholder.com/600x750?text=Barcelona+Retro",
+
+    url: "https://8618320710438.x.yupoo.com/"
 }
 
 ];
 
 
+
+/*
+=========================================================
+VARIABLES
+=========================================================
+*/
+
 let currentCategory = "Todos";
 let searchTerm = "";
 
 
-/* MOSTRAR PRODUCTOS */
+
+/*
+=========================================================
+MOSTRAR PRODUCTOS
+=========================================================
+*/
 
 function renderProducts(){
 
-let result = products.filter(product => {
+    let results = products.filter(product => {
 
-const matchesCategory =
-currentCategory === "Todos" ||
-product.category === currentCategory;
+        const categoryMatch =
+            currentCategory === "Todos" ||
+            product.category === currentCategory;
 
-const text =
-(product.name + " " +
-product.category + " " +
-product.type).toLowerCase();
+        const searchableText = (
 
-const matchesSearch =
-text.includes(searchTerm.toLowerCase());
+            product.name + " " +
+            product.category + " " +
+            product.type + " " +
+            product.season + " " +
+            product.team
 
-return matchesCategory && matchesSearch;
+        ).toLowerCase();
 
-});
+        const searchMatch =
+            searchableText.includes(
+                searchTerm.toLowerCase()
+            );
+
+        return categoryMatch && searchMatch;
+
+    });
 
 
-/* ORDEN */
+    /*
+    ORDENAR
+    */
 
-const sort = document.getElementById("sort").value;
+    const sort =
+        document.getElementById("sort").value;
 
-if(sort === "az"){
-result.sort((a,b)=>a.name.localeCompare(b.name));
+    if(sort === "az"){
+
+        results.sort((a,b)=>
+            a.name.localeCompare(b.name)
+        );
+
+    }
+
+    if(sort === "za"){
+
+        results.sort((a,b)=>
+            b.name.localeCompare(a.name)
+        );
+
+    }
+
+
+    /*
+    CONTADOR
+    */
+
+    document.getElementById("counter")
+        .textContent =
+        results.length +
+        (results.length === 1
+        ? " producto"
+        : " productos");
+
+
+    /*
+    CONTENEDOR
+    */
+
+    const container =
+        document.getElementById("products");
+
+    const empty =
+        document.getElementById("empty");
+
+    container.innerHTML = "";
+
+
+    /*
+    SIN RESULTADOS
+    */
+
+    if(results.length === 0){
+
+        empty.style.display = "block";
+
+        return;
+
+    }
+
+    empty.style.display = "none";
+
+
+    /*
+    CREAR TARJETAS
+    */
+
+    results.forEach((product,index)=>{
+
+        const card =
+        document.createElement("div");
+
+        card.className = "product";
+
+
+        card.innerHTML = `
+
+            <div class="product-image">
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+                    loading="lazy"
+                >
+
+                <span class="badge">
+                    ${product.category}
+                </span>
+
+                <button
+                    class="favorite"
+                    onclick="toggleFavorite(this)"
+                    aria-label="Agregar a favoritos">
+
+                    ♡
+
+                </button>
+
+            </div>
+
+
+            <div class="product-info">
+
+                <div class="product-category">
+                    ${product.team}
+                </div>
+
+                <h3 class="product-title">
+                    ${product.name}
+                </h3>
+
+
+                <div class="product-details">
+
+                    <span class="tag">
+                        ${product.season}
+                    </span>
+
+                    <span class="tag">
+                        ${product.type}
+                    </span>
+
+                </div>
+
+
+                <a
+                    class="view-product"
+                    href="${product.url}"
+                    target="_blank"
+                    rel="noopener noreferrer">
+
+                    Ver producto →
+
+                </a>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
 }
 
-if(sort === "za"){
-result.sort((a,b)=>b.name.localeCompare(a.name));
-}
 
 
-/* CONTADOR */
+/*
+=========================================================
+BUSCADOR
+=========================================================
+*/
 
-document.getElementById("count").textContent =
-result.length + " productos encontrados";
-
-
-/* HTML */
-
-const container = document.getElementById("products");
-
-container.innerHTML = "";
-
-
-if(result.length === 0){
-
-document.getElementById("empty").style.display = "block";
-
-}else{
-
-document.getElementById("empty").style.display = "none";
-
-result.forEach((product,index)=>{
-
-container.innerHTML += `
-
-<div class="card">
-
-<div class="card-image">
-
-<img
-src="${product.image}"
-alt="${product.name}"
-loading="lazy"
->
-
-<span class="badge">
-${product.category}
-</span>
-
-<button
-class="favorite"
-onclick="favorite(${index})">
-♡
-</button>
-
-</div>
-
-<div class="card-content">
-
-<div class="category-name">
-${product.type}
-</div>
-
-<h3>
-${product.name}
-</h3>
-
-<div class="info">
-
-<span class="tag">
-Catálogo
-</span>
-
-</div>
-
-<button
-class="view"
-onclick="window.open('${product.url}','_blank')">
-
-Ver producto →
-
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-}
-
-
-/* BUSCADOR */
-
-document.getElementById("search")
+document
+.getElementById("search")
 .addEventListener("input",function(){
 
-searchTerm = this.value;
+    searchTerm = this.value;
 
-renderProducts();
+    renderProducts();
 
 });
 
 
-/* CATEGORÍAS */
 
-document.querySelectorAll(".category")
-.forEach(button=>{
-
-button.addEventListener("click",function(){
+/*
+=========================================================
+CATEGORÍAS
+=========================================================
+*/
 
 document
 .querySelectorAll(".category")
-.forEach(btn=>btn.classList.remove("active"));
+.forEach(button=>{
 
-this.classList.add("active");
+    button.addEventListener("click",function(){
 
-currentCategory = this.dataset.category;
+        document
+        .querySelectorAll(".category")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
 
-renderProducts();
+
+        this.classList.add("active");
+
+
+        currentCategory =
+            this.dataset.category;
+
+
+        renderProducts();
+
+    });
 
 });
 
-});
 
 
-/* ORDEN */
+/*
+=========================================================
+ORDEN
+=========================================================
+*/
 
-document.getElementById("sort")
-.addEventListener("change",renderProducts);
+document
+.getElementById("sort")
+.addEventListener(
+    "change",
+    renderProducts
+);
 
 
-/* FAVORITOS */
 
-function favorite(index){
+/*
+=========================================================
+FAVORITOS
+=========================================================
+*/
 
-alert("Producto agregado a favoritos");
+function toggleFavorite(button){
+
+    button.classList.toggle("active");
+
+    if(button.classList.contains("active")){
+
+        button.innerHTML = "♥";
+
+    }else{
+
+        button.innerHTML = "♡";
+
+    }
 
 }
 
 
-/* INICIAR */
+
+/*
+=========================================================
+INICIAR
+=========================================================
+*/
 
 renderProducts();
 
